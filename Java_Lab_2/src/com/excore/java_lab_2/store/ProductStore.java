@@ -1,26 +1,25 @@
 package com.excore.java_lab_2.store;
 
-import com.excore.java_lab_2.model.AbstractForm;
-import com.excore.java_lab_2.model.Timber;
+import com.excore.java_lab_2.model.IWeight;
 
 import java.util.Arrays;
 
 public class ProductStore {
     private int count = 0;
-    private AbstractForm[] arr = new AbstractForm[3];
+    private IWeight[] arr = new IWeight[3];
 
-    public AbstractForm[] getArr() {
+    public IWeight[] getArr() {
         return Arrays.copyOf(arr, count);
     }
 
-    public AbstractForm get(int idx) {
+    public IWeight get(int idx) {
         if (idx >= 0 && idx < count) {
             return arr[idx];
         }
         return null; // Out of range
     }
 
-    public void add(AbstractForm newProduct) {
+    public void add(IWeight newProduct) {
         if (arr.length == count) {
             arr = Arrays.copyOf(arr, count + count / 2);
         }

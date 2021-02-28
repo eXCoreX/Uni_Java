@@ -1,6 +1,6 @@
 package com.excore.java_lab_2.test;
 
-import com.excore.java_lab_2.model.AbstractForm;
+import com.excore.java_lab_2.model.IWeight;
 import com.excore.java_lab_2.model.Timber;
 import com.excore.java_lab_2.model.Wood;
 import com.excore.java_lab_2.store.ProductStore;
@@ -61,7 +61,7 @@ public class TestByConsole {
 
     private void calcWeight() {
         float result = 0f;
-        for (AbstractForm t :
+        for (IWeight t :
                 ps.getArr()) {
             result += t.weight();
         }

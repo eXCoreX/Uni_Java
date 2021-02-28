@@ -1,6 +1,6 @@
 package com.excore.java_lab_2.model;
 
-public abstract class AbstractForm {
+public abstract class AbstractForm implements IWeight {
     protected final Wood wood;
 
     public AbstractForm(Wood wood) {
@@ -13,6 +13,7 @@ public abstract class AbstractForm {
 
     public abstract float volume();
 
+    @Override
     public float weight() {
         return volume() * wood.getDensity();
     }

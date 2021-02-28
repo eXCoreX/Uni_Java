@@ -21,9 +21,8 @@ public class Cylinder extends AbstractForm {
     @Override
     public String toString() {
         return "Cylinder{" +
-                "wood=" + wood +
-                ", length=" + length +
-                ", diameter=" + diameter +
+                "wood=" + wood.getName() +
+                ", weight=" + weight() +
                 '}';
     }
 
