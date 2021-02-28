@@ -1,9 +1,10 @@
-package com.excore.java_lab_1.test;
+package com.excore.java_lab_2.test;
 
-import com.excore.java_lab_1.model.Timber;
-import com.excore.java_lab_1.model.Wood;
-import com.excore.java_lab_1.store.ProductStore;
-import com.excore.java_lab_1.store.WoodDirectory;
+import com.excore.java_lab_2.model.AbstractForm;
+import com.excore.java_lab_2.model.Timber;
+import com.excore.java_lab_2.model.Wood;
+import com.excore.java_lab_2.store.ProductStore;
+import com.excore.java_lab_2.store.WoodDirectory;
 
 import java.util.Scanner;
 
@@ -60,7 +61,7 @@ public class TestByConsole {
 
     private void calcWeight() {
         float result = 0f;
-        for (Timber t :
+        for (AbstractForm t :
                 ps.getArr()) {
             result += t.weight();
         }

@@ -1,6 +1,6 @@
-package com.excore.java_lab_1.store;
+package com.excore.java_lab_2.store;
 
-import com.excore.java_lab_1.model.Wood;
+import com.excore.java_lab_2.model.Wood;
 
 import java.util.Arrays;
 

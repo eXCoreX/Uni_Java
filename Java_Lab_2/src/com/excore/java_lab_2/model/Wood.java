@@ -1,4 +1,4 @@
-package com.excore.java_lab_1.model;
+package com.excore.java_lab_2.model;
 
 public class Wood {
     private final int id;

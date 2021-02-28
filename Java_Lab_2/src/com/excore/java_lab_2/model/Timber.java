@@ -1,20 +1,15 @@
-package com.excore.java_lab_1.model;
+package com.excore.java_lab_2.model;
 
-public class Timber {
-    private final Wood wood;
+public class Timber extends AbstractForm {
     private final float length;
     private final float height;
     private final float width;
 
     public Timber(Wood wood, float length, float height, float width) {
-        this.wood = wood;
+        super(wood);
         this.length = length;
         this.height = height;
         this.width = width;
-    }
-
-    public Wood getWood() {
-        return wood;
     }
 
     public float getLength() {
@@ -29,12 +24,9 @@ public class Timber {
         return width;
     }
 
+    @Override
     public float volume() {
         return length * height * width;
-    }
-
-    public float weight() {
-        return volume() * wood.getDensity();
     }
 
     @Override
