@@ -1,19 +1,16 @@
 package com.excore.java_lab_2.test;
 
-import com.excore.java_lab_2.model.IWeight;
-import com.excore.java_lab_2.model.Timber;
-import com.excore.java_lab_2.model.Wood;
+import com.excore.java_lab_2.model.*;
 import com.excore.java_lab_2.store.ProductStore;
 import com.excore.java_lab_2.store.WoodDirectory;
 
 import java.util.Scanner;
 
 public class TestByConsole {
-    private WoodDirectory wd = new WoodDirectory();
-    private ProductStore ps = new ProductStore();
-
+    private final WoodDirectory wd = new WoodDirectory();
+    private final ProductStore ps = new ProductStore();
+    private final Scanner s = new Scanner(System.in);
     private void addWood() {
-        Scanner s = new Scanner(System.in);
         int id;
         String name;
         float density;
@@ -26,19 +23,19 @@ public class TestByConsole {
         System.out.print("Density: ");
         density = s.nextFloat();
         s.nextLine();
-        if (wd.add(new Wood(id, name, density))) {
-            System.out.println("Wood added");
+        if (wd.addChecked(new Wood(id, name, density))) {
+            System.out.println("\nWood added");
+            System.out.println(wd);
         } else {
-            System.out.println("Wood with id " + id + " already exists");
+            System.out.println("\nWood with id " + id + " already exists");
         }
     }
 
     private void addTimber() {
-        Scanner s = new Scanner(System.in);
         int id;
         float l, h, w;
 
-        System.out.print("Id: ");
+        System.out.print("Wood Id: ");
         id = s.nextInt();
         s.nextLine();
         System.out.print("Length: ");
@@ -50,6 +47,8 @@ public class TestByConsole {
         System.out.print("Width: ");
         w = s.nextFloat();
         s.nextLine();
+
+        System.out.println();
         Wood wood = wd.get(id);
         if (wood != null) {
             ps.add(new Timber(wood, l, h, w));
@@ -57,6 +56,61 @@ public class TestByConsole {
         } else {
             System.out.println("Wood not found");
         }
+    }
+
+    private void addCylinder() {
+        int id;
+        float l, d;
+
+        System.out.print("Wood Id: ");
+        id = s.nextInt();
+        s.nextLine();
+        System.out.print("Length: ");
+        l = s.nextFloat();
+        s.nextLine();
+        System.out.print("Diameter: ");
+        d = s.nextFloat();
+        s.nextLine();
+
+        System.out.println();
+        Wood wood = wd.get(id);
+        if (wood != null) {
+            ps.add(new Cylinder(wood, l, d));
+            System.out.println("Cylinder added");
+        } else {
+            System.out.println("Wood not found");
+        }
+    }
+
+    private void addWaste() {
+        System.out.print("Weight: ");
+        float w = s.nextFloat();
+        s.nextLine();
+        ps.add(new Waste(w));
+        System.out.println("\nWaste added");
+    }
+
+    private void addProduct() {
+        System.out.println(
+                """
+                        
+                        What do you want to add?
+                        1: Timber
+                        2: Cylinder
+                        3: Waste""");
+        int prod = s.nextInt();
+        s.nextLine();
+        switch (prod) {
+            case 1 -> addTimber();
+            case 2 -> addCylinder();
+            case 3 -> addWaste();
+            default -> {
+                return;
+            }
+        }
+
+        System.out.println(ps);
+
     }
 
     private void calcWeight() {
@@ -72,27 +126,21 @@ public class TestByConsole {
         System.out.println("/ / / Timber management system \\ \\ \\");
 
         while (true) {
-            System.out.println("\nMenu:");
-            System.out.println("1: Add wood");
-            System.out.println("2: Add timber");
-            System.out.println("3: Calculate total weight");
-            System.out.println("4: Exit");
-            Scanner s = new Scanner(System.in);
+            System.out.println(
+                    """
+                            
+                            1: Add Wood
+                            2: Add Product
+                            3: Calculate total weight
+                            4: Exit""");
             int choice = s.nextInt();
             s.nextLine();
-
+            System.out.println();
             switch (choice) {
-                case 1:
-                    addWood();
-                    break;
-                case 2:
-                    addTimber();
-                    break;
-                case 3:
-                    calcWeight();
-                    break;
-                case 4:
-                    return;
+                case 1 -> addWood();
+                case 2 -> addProduct();
+                case 3 -> calcWeight();
+                case 4 -> System.exit(0);
             }
         }
     }

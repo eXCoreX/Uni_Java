@@ -7,8 +7,8 @@ import com.excore.java_lab_2.store.ProductStore;
 import com.excore.java_lab_2.store.WoodDirectory;
 
 public class TestApp {
-    private WoodDirectory wd = new WoodDirectory();
-    private ProductStore ps = new ProductStore();
+    private final WoodDirectory wd = new WoodDirectory();
+    private final ProductStore ps = new ProductStore();
 
     private float calcWeight() {
         float result = 0f;

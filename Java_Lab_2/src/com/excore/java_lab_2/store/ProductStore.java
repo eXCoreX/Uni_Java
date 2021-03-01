@@ -4,35 +4,23 @@ import com.excore.java_lab_2.model.IWeight;
 
 import java.util.Arrays;
 
-public class ProductStore {
-    private int count = 0;
-    private IWeight[] arr = new IWeight[3];
-
+public class ProductStore extends AbstractStore<IWeight> {
     public IWeight[] getArr() {
-        return Arrays.copyOf(arr, count);
+        return Arrays.copyOf(arr, count, IWeight[].class);
     }
 
+    @Override
     public IWeight get(int idx) {
-        if (idx >= 0 && idx < count) {
-            return arr[idx];
-        }
-        return null; // Out of range
+        return super.get(idx);
     }
 
-    public void add(IWeight newProduct) {
-        if (arr.length == count) {
-            arr = Arrays.copyOf(arr, count + count / 2);
-        }
-        arr[count++] = newProduct;
+    @Override
+    public void add(IWeight newItem) {
+        super.add(newItem);
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Перелік виробів:\n");
-
-        for (int i = 0; i < count; i++) {
-            sb.append(arr[i]).append('\n');
-        }
-        return sb.toString();
+        return "Перелік виробів:\n" + super.toString();
     }
 }

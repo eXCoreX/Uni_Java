@@ -4,9 +4,7 @@ import com.excore.java_lab_2.model.Wood;
 
 import java.util.Arrays;
 
-public class WoodDirectory {
-    private int count = 0;
-    private Wood[] arr = new Wood[3];
+public class WoodDirectory extends AbstractStore<Wood> {
 
     {
         arr[0] = new Wood(1, "Модрина", 1.1f);
@@ -16,37 +14,30 @@ public class WoodDirectory {
     }
 
     public Wood[] getArr() {
-        return Arrays.copyOf(arr, count);
+        return Arrays.copyOf(arr, count, Wood[].class);
     }
 
+    @Override
     public Wood get(int id) {
         for (int i = 0; i < count; i++) {
-            if (arr[i].getId() == id) {
-                return arr[i];
+            if (((Wood)arr[i]).getId() == id) {
+                return (Wood)arr[i];
             }
         }
         return null; // Not found
     }
 
-    public boolean add(Wood newWood) {
+    public boolean addChecked(Wood newWood) {
         if (get(newWood.getId()) != null) {
             return false; // Id already present
         }
 
-        if (arr.length == count) {
-            arr = Arrays.copyOf(arr, count + count / 2);
-        }
-        arr[count++] = newWood;
+        super.add(newWood);
         return true;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("Каталог деревини:\n");
-
-        for (int i = 0; i < count; i++) {
-            sb.append(arr[i]).append('\n');
-        }
-        return sb.toString();
+        return "Каталог деревини:\n" + super.toString();
     }
 }
