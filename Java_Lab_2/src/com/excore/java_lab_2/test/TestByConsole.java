@@ -93,13 +93,13 @@ public class TestByConsole {
     private void addProduct() {
         System.out.println(
                 """
-                        
                         What do you want to add?
                         1: Timber
                         2: Cylinder
                         3: Waste""");
         int prod = s.nextInt();
         s.nextLine();
+        System.out.println();
         switch (prod) {
             case 1 -> addTimber();
             case 2 -> addCylinder();

@@ -1,20 +1,20 @@
 package com.excore.java_lab_2.model;
 
 public class Waste implements IWeight{
-    private float wasteWeight;
+    private final float weight;
 
     public Waste(float wasteWeight) {
-        this.wasteWeight = wasteWeight;
+        this.weight = wasteWeight;
     }
 
     public float weight() {
-        return wasteWeight;
+        return weight;
     }
 
     @Override
     public String toString() {
         return "Waste{" +
-                "weight=" + wasteWeight +
+                "weight=" + weight +
                 '}';
     }
 }

@@ -1,8 +1,5 @@
 package com.excore.java_lab_2.store;
 
-import com.excore.java_lab_2.model.IWeight;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public abstract class AbstractStore<T> {

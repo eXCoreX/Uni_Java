@@ -3,6 +3,7 @@ package com.excore.java_lab_2.test;
 import com.excore.java_lab_2.model.Cylinder;
 import com.excore.java_lab_2.model.IWeight;
 import com.excore.java_lab_2.model.Timber;
+import com.excore.java_lab_2.model.Waste;
 import com.excore.java_lab_2.store.ProductStore;
 import com.excore.java_lab_2.store.WoodDirectory;
 
@@ -22,9 +23,11 @@ public class TestApp {
     private void startApp() {
         ps.add(new Timber(wd.get(1), 5f, 0.5f, 0.4f));
         ps.add(new Timber(wd.get(2), 10f, 0.5f, 0.4f));
+        ps.add(new Waste(3.6f));
         ps.add(new Cylinder(wd.get(3), 15f, 1f));
         ps.add(new Timber(wd.get(3), 11f, 0.9f, 1.4f));
         ps.add(new Cylinder(wd.get(1), 4f, 0.3f));
+        ps.add(new Waste(9.2f));
 
         System.out.println(wd);
         System.out.println(ps);
