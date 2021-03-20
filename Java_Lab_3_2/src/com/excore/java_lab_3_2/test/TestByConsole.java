@@ -194,7 +194,7 @@ public class TestByConsole {
                         FileWriter fw = new FileWriter(f);
                         BufferedWriter bw = new BufferedWriter(fw);
 
-                        bw.write(wd.toString());
+                        bw.write(wd.toString() + "\n");
                         bw.write(ps.toString());
                         bw.close();
                         System.out.println("Printed successfully");
@@ -349,7 +349,7 @@ public class TestByConsole {
 
     private void requestName() {
         System.out.print("Enter your name: ");
-        String name =  s.nextLine();
+        String name = s.nextLine();
         System.out.println("\nHello, " + name);
         LogString(name + " logged in");
     }
