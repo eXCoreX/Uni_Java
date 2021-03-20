@@ -234,6 +234,8 @@ public class TestByConsole {
                     } catch (Exception e) {
                         MyExceptionHandler.handle(e, "Opening file");
                     }
+                } else {
+                    System.out.println("Loading action cancelled");
                 }
             });
         } catch (InterruptedException | InvocationTargetException e) {

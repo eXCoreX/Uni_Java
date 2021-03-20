@@ -3,7 +3,9 @@ package com.excore.java_lab_3_2.test;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.plaf.metal.MetalLookAndFeel;
+import java.awt.*;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
 public class TestFile {
@@ -33,14 +35,20 @@ public class TestFile {
                 return "Файли типу *.txt";
             }
         });
-        dialog.showOpenDialog(null);
-        File[] ff = dialog.getSelectedFiles();
-        if (ff != null) {
-            for (File file:
-                 ff) {
-                System.out.println(file.getName());
-                System.out.println(file.getAbsolutePath());
-            }
+        try {
+            EventQueue.invokeAndWait(() -> {
+                dialog.showOpenDialog(null);
+                File[] ff = dialog.getSelectedFiles();
+                if (ff != null) {
+                    for (File file:
+                            ff) {
+                        System.out.println(file.getName());
+                        System.out.println(file.getAbsolutePath());
+                    }
+                }
+            });
+        } catch (InvocationTargetException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
