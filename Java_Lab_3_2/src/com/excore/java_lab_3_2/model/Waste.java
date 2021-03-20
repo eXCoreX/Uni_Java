@@ -1,6 +1,8 @@
 package com.excore.java_lab_3_2.model;
 
-public class Waste implements IWeight{
+import java.io.Serializable;
+
+public class Waste implements IWeight, Serializable {
     private final float weight;
 
     public Waste(float wasteWeight) throws Exception {

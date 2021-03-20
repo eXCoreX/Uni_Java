@@ -1,6 +1,8 @@
 package com.excore.java_lab_3_2.model;
 
-public abstract class AbstractForm implements IWeight {
+import java.io.Serializable;
+
+public abstract class AbstractForm implements IWeight, Serializable {
     protected final Wood wood;
 
     public AbstractForm(Wood wood) {

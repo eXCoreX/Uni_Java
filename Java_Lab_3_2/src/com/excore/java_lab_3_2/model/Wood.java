@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Wood implements Serializable {
     private final int id;
     private final String name;
-    private transient final float density;
+    private final float density;
 
     public Wood(int id, String name, float density) {
         this.id = id;
