@@ -1,0 +1,4 @@
+2021-03-29 13-10-06: Program start
+2021-03-29 13-10-09: RL logged in
+2021-03-29 13-10-19: Added Wood{id=4, name='Ahaha', density=1.1}
+2021-03-29 13-10-25: Program shutting down...
