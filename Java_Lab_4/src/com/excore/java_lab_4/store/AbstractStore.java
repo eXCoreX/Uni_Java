@@ -3,6 +3,7 @@ package com.excore.java_lab_4.store;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
     protected int count = 0;
@@ -45,6 +46,10 @@ public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
         return new StoreIterator();
     }
 
+    public ListIterator<T> listIterator() {
+        return new StoreListIterator();
+    }
+
     private class StoreIterator implements Iterator<T> {
         int current = 0;
         @Override
@@ -62,6 +67,42 @@ public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
         @Override
         public T next() {
             return (T) arr[current++];
+        }
+    }
+
+    private class StoreListIterator extends StoreIterator implements ListIterator<T> {
+        @Override
+        public boolean hasPrevious() {
+            return current > 0;
+        }
+
+        @Override
+        public T previous() {
+            return (T) arr[current - 1];
+        }
+
+        @Override
+        public int nextIndex() {
+            return current;
+        }
+
+        @Override
+        public int previousIndex() {
+            return current - 1;
+        }
+
+        @Override
+        public void set(T t) {
+            arr[current] = t;
+        }
+
+        @Override
+        public void add(T t) {
+            if (arr.length == count) {
+                arr = Arrays.copyOf(arr, count + count / 2 + 1);
+            }
+            System.arraycopy(arr, current, arr, current + 1, count - current);
+            arr[current] = t;
         }
     }
 }
