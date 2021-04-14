@@ -102,7 +102,8 @@ public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
                 arr = Arrays.copyOf(arr, count + count / 2 + 1);
             }
             System.arraycopy(arr, current, arr, current + 1, count - current);
-            arr[current] = t;
+            arr[current++] = t;
+            count++;
         }
     }
 }

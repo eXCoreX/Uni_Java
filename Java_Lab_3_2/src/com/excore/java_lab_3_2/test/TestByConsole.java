@@ -58,6 +58,8 @@ public class TestByConsole {
         name = s.nextLine();
         System.out.print("Density: ");
         density = s.nextFloat();
+        
+
         s.nextLine();
         Wood toAdd = new Wood(id, name, density);
         if (wd.addChecked(toAdd)) {
@@ -276,7 +278,14 @@ public class TestByConsole {
     }
 
     private static JFileChooser prepareSerializationDialog() {
-        JFileChooser dialog = new JFileChooser();
+        JFileChooser dialog = new JFileChooser() {
+            @Override
+            protected JDialog createDialog(Component parent) throws HeadlessException {
+                JDialog diag = super.createDialog(parent);
+                diag.setAlwaysOnTop(true);
+                return diag;
+            }
+        };
         dialog.setFileSelectionMode(JFileChooser.FILES_ONLY);
         dialog.setFileFilter(new FileFilter() {
             @Override
@@ -285,7 +294,9 @@ public class TestByConsole {
                     return f.isDirectory() || (f.isFile() && f.getName().toLowerCase().endsWith(".prodstore"));
                 }
                 return false;
+
             }
+
 
             @Override
             public String getDescription() {

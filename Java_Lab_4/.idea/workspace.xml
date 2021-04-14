@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fbc74e5-0143-4a82-80ba-b7cce1f4f020" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Java_Lab_3_2/src/com/excore/java_lab_3_2/test/TestByConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Java_Lab_3_2/src/com/excore/java_lab_3_2/test/TestByConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/excore/java_lab_4/store/AbstractStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/excore/java_lab_4/store/AbstractStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/excore/java_lab_4/test/TestApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/excore/java_lab_4/test/TestApp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +28,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager" selected="Application.TestApp">
     <configuration name="TestApp" type="Application" factoryName="Application">
@@ -38,17 +41,6 @@
     <configuration name="TestByConsole" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.excore.java_lab_4.test.TestByConsole" />
       <module name="Java_Lab_4" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -67,6 +59,8 @@
       <option name="presentableId" value="Default" />
       <updated>1617012167568</updated>
       <workItem from="1617012169083" duration="2672000" />
+      <workItem from="1618301682125" duration="24000" />
+      <workItem from="1618302313789" duration="2599000" />
     </task>
     <servers />
   </component>
@@ -83,5 +77,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

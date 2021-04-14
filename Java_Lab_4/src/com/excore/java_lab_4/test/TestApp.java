@@ -5,6 +5,7 @@ import com.excore.java_lab_4.store.ProductStore;
 import com.excore.java_lab_4.store.WoodDirectory;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 public class TestApp {
     private final WoodDirectory wd = new WoodDirectory();
@@ -72,6 +73,15 @@ public class TestApp {
         }
         System.out.println("Перелік виробів до вилучення:");
         System.out.println(ps);
+        System.out.println("З доданим об'єктом: ");
+        ListIterator<IWeight> listItr = ps.listIterator();
+        try {
+            listItr.add(new Cylinder(wd.get(1), 4f, 0.3f));
+        } catch (Exception e) {
+            MyExceptionHandler.handle(e, "Введення продуктів");
+        }
+        System.out.println(ps);
+
     }
 
     public static void main(String[] args) {
