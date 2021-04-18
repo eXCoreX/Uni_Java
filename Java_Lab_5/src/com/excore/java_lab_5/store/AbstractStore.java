@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
     protected int count = 0;
@@ -28,6 +30,29 @@ public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
             arr = Arrays.copyOf(arr, count + count / 2 + 1);
         }
         arr[count++] = newItem;
+    }
+
+    public void remove(Predicate<T> pred) {
+        Iterator<T> itr = iterator();
+        while (itr.hasNext()) {
+            if (pred.test(itr.next())) {
+                itr.remove();
+            }
+        }
+    }
+
+    public void doForAll(Consumer<T> action) {
+        for (T t : this) {
+            action.accept(t);
+        }
+    }
+
+    public void doOnlyFor(Consumer<T> action, Predicate<T> pred) {
+        for (T item : this) {
+            if (pred.test(item)) {
+                action.accept(item);
+            }
+        }
     }
 
     @Override

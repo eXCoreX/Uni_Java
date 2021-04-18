@@ -6,6 +6,7 @@ import com.excore.java_lab_5.store.WoodDirectory;
 
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.function.Predicate;
 
 public class TestApp {
     private final WoodDirectory wd = new WoodDirectory();
@@ -80,6 +81,11 @@ public class TestApp {
         } catch (Exception e) {
             MyExceptionHandler.handle(e, "Введення продуктів");
         }
+        try {
+            listItr.add(new Cylinder(wd.get(2), 2f, 0.1f));
+        } catch (Exception e) {
+            MyExceptionHandler.handle(e, "Введення продуктів");
+        }
         System.out.println(ps);
         System.out.println("Спроба помилкового вилучення:");
         try {
@@ -87,6 +93,20 @@ public class TestApp {
         } catch (Exception e) {
             System.out.println(e);
         }
+
+        System.out.println("\nВикористання remove з предикатом");
+        float maxWeight = 1.0f;
+        Predicate<IWeight> pred = new Predicate<IWeight>() {
+            @Override
+            public boolean test(IWeight item) {
+                return item.weight() > maxWeight;
+            }
+        };
+        ps.remove(pred);
+        System.out.println(ps);
+
+        System.out.println("doOnlyFor:");
+        ps.doOnlyFor(System.out::println, (item) -> item.weight() < 0.1f);
     }
 
     public static void main(String[] args) {
