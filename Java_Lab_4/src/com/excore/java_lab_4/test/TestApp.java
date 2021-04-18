@@ -71,7 +71,7 @@ public class TestApp {
                 itr.remove();
             }
         }
-        System.out.println("Перелік виробів до вилучення:");
+        System.out.println("Перелік виробів після вилучення:");
         System.out.println(ps);
         System.out.println("З доданим об'єктом: ");
         ListIterator<IWeight> listItr = ps.listIterator();
@@ -81,7 +81,12 @@ public class TestApp {
             MyExceptionHandler.handle(e, "Введення продуктів");
         }
         System.out.println(ps);
-
+        System.out.println("Спроба помилкового вилучення:");
+        try {
+            listItr.remove();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public static void main(String[] args) {

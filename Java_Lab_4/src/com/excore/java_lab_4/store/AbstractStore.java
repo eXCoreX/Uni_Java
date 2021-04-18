@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 
 public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
     protected int count = 0;
@@ -51,49 +52,69 @@ public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
     }
 
     private class StoreIterator implements Iterator<T> {
-        int current = 0;
+        int cursorBefore = 0;
+        int lastReturned = -1;
+        boolean returnedSomething = false;
         @Override
         public boolean hasNext() {
-            return current < count;
+            return cursorBefore < count;
         }
 
         @Override
         public void remove() {
-            System.arraycopy(arr, current, arr, current - 1, count - current);
+            if (!returnedSomething) {
+                throw new IllegalStateException();
+            }
+            System.arraycopy(arr, lastReturned + 1, arr, lastReturned, count - lastReturned - 1);
             count--;
-            current--;
+            cursorBefore--;
+            lastReturned = -1;
+            returnedSomething = false;
         }
 
         @Override
         public T next() {
-            return (T) arr[current++];
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            lastReturned = cursorBefore;
+            returnedSomething = true;
+            return (T) arr[cursorBefore++];
         }
     }
 
     private class StoreListIterator extends StoreIterator implements ListIterator<T> {
         @Override
         public boolean hasPrevious() {
-            return current > 0;
+            return cursorBefore > 0;
         }
 
         @Override
         public T previous() {
-            return (T) arr[current - 1];
+            if (!hasPrevious()) {
+                throw new NoSuchElementException();
+            }
+            cursorBefore--;
+            lastReturned = cursorBefore;
+            return (T) arr[cursorBefore];
         }
 
         @Override
         public int nextIndex() {
-            return current;
+            return cursorBefore;
         }
 
         @Override
         public int previousIndex() {
-            return current - 1;
+            return cursorBefore - 1;
         }
 
         @Override
         public void set(T t) {
-            arr[current] = t;
+            if (!returnedSomething) {
+                throw new IllegalStateException();
+            }
+            arr[lastReturned] = t;
         }
 
         @Override
@@ -101,9 +122,11 @@ public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
             if (arr.length == count) {
                 arr = Arrays.copyOf(arr, count + count / 2 + 1);
             }
-            System.arraycopy(arr, current, arr, current + 1, count - current);
-            arr[current++] = t;
+            System.arraycopy(arr, cursorBefore, arr, cursorBefore + 1, count - cursorBefore);
+            arr[cursorBefore++] = t;
             count++;
+            lastReturned = -1;
+            returnedSomething = false;
         }
     }
 }
