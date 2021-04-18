@@ -1,6 +1,7 @@
 package com.excore.java_lab_6.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Wood implements Serializable {
     private final int id;
@@ -23,6 +24,19 @@ public class Wood implements Serializable {
 
     public float getDensity() {
         return density;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Wood wood = (Wood) o;
+        return id == wood.id && Float.compare(wood.density, density) == 0 && name.equals(wood.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, density);
     }
 
     @Override
