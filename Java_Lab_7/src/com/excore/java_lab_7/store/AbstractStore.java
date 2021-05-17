@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
     protected int count = 0;
     protected Object[] arr = new Object[3];
-
+    protected final Object syncObject = new Object();
     public int getCount() {
         return count;
     }
@@ -27,10 +27,12 @@ public abstract class AbstractStore<T> implements Serializable, Iterable<T> {
     }
 
     protected void add(T newItem) {
-        if (arr.length == count) {
-            arr = Arrays.copyOf(arr, count + count / 2 + 1);
+        synchronized (syncObject) {
+            if (arr.length == count) {
+                arr = Arrays.copyOf(arr, count + count / 2 + 1);
+            }
+            arr[count++] = newItem;
         }
-        arr[count++] = newItem;
     }
 
     public void remove(Predicate<T> pred) {

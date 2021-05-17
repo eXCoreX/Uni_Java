@@ -3,7 +3,9 @@ package com.excore.java_lab_7.test;
 import com.excore.java_lab_7.model.*;
 import com.excore.java_lab_7.store.ProductStore;
 import com.excore.java_lab_7.store.WoodDirectory;
+import com.excore.java_lab_7.threads.CylinderShop;
 import com.excore.java_lab_7.threads.TimberShop;
+import com.excore.java_lab_7.threads.WoodShop;
 
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -23,12 +25,21 @@ public class TestApp {
     }
 
     private void startApp() {
-        Thread shop1 = new TimberShop(wd, ps, 3);
-        Thread shop2 = new TimberShop(wd, ps, 3);
-        Thread shop3 = new TimberShop(wd, ps, 3);
-        shop1.start();
-        shop2.start();
-        shop3.start();
+        WoodShop timberShop = new TimberShop("timberShop", wd, ps, 100);
+        WoodShop cylinderShop = new CylinderShop("cylinderShop", wd, ps, 100);
+        Thread t1 = new Thread(timberShop);
+        Thread t2 = new Thread(cylinderShop);
+        t1.start();
+        t2.start();
+        (new Thread(() -> {
+            try {
+                t1.join();
+                t2.join();
+                System.out.println(ps.getCount());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        })).start();
     }
 
     public static void main(String[] args) {
