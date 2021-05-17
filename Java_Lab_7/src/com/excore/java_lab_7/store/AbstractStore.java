@@ -1,4 +1,4 @@
-package com.excore.java_lab_6.store;
+package com.excore.java_lab_7.store;
 
 import java.io.Serializable;
 import java.util.Arrays;
