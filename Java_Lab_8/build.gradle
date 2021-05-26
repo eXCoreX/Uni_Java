@@ -14,15 +14,15 @@ ext {
     junitVersion = '5.7.1'
 }
 
-sourceCompatibility = 1.9
-targetCompatibility = 1.9
+sourceCompatibility = 10
+targetCompatibility = 10
 
 dependencies {
     compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
 
     implementation('org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0')
     // https://mvnrepository.com/artifact/org.postgresql/postgresql
-    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.20'
+    implementation('org.postgresql:postgresql:42.2.20');
 
 
 
@@ -35,5 +35,6 @@ test {
 }
 
 war {
-    archiveName("ROOT.war")
+    archiveFileName = "ROOT.war"
 }
+

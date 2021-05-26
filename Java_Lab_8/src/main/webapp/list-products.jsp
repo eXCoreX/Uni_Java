@@ -10,6 +10,9 @@
 <html>
 <head>
     <title>All products</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="eXCore">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://dohliam.github.io/dropin-minimal-css/min/bamboo.min.css">
     <style>
         table {
@@ -188,15 +191,9 @@
             <c:forEach var="product" items="${items}">
                 <tr>
                     <td>${product.name}</td>
-                    <td>
-                        <c:if test="${product.name != \"Waste\"}">${product.wood}</c:if>
-                    </td>
+                    <td><c:if test="${product.name != \"Waste\"}">${product.wood}</c:if></td>
                     <td>${product.weight}</td>
-                    <td>
-                        <button onclick="deleteProduct('<c:url value="/delete-product"/>', '${product.id}', this)">
-                            Delete
-                        </button>
-                    </td>
+                    <td><button onclick="deleteProduct('<c:url value="/delete-product"/>', '${product.id}', this)">Delete</button></td>
                 </tr>
             </c:forEach>
             </tbody>

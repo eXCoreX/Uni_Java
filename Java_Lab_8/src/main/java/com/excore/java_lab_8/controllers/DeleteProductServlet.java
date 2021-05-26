@@ -17,7 +17,7 @@ public class DeleteProductServlet extends HttpServlet {
         try {
             Connection c = ProductDbConnection.getConnection();
             Statement s = c.createStatement();
-            s.executeQuery(String.format("delete from products where id=%d", id));
+            s.executeUpdate(String.format("delete from products where id=%d", id));
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }

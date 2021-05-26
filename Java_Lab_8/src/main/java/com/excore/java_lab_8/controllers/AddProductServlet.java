@@ -41,7 +41,7 @@ public class AddProductServlet extends HttpServlet {
                     String addQuery = "insert into products (name, weight, wood, dim1, dim2, dim3) " +
                             String.format("values ('%s', %f, %d, %f, %f, %f)", t.getName(), t.getWeight(),
                                     t.getWood().getId(), t.getLength(), t.getHeight(), t.getWidth());
-                    s.executeQuery(addQuery);
+                    s.executeUpdate(addQuery);
                     break;
                 case "cylinder":
                     length = Float.parseFloat(request.getParameter("dim1"));
@@ -56,14 +56,14 @@ public class AddProductServlet extends HttpServlet {
                     addQuery = "insert into products (name, weight, wood, dim1, dim2) " +
                             String.format("values ('%s', %f, %d, %f, %f)", cylinder.getName(), cylinder.getWeight(),
                                     cylinder.getWood().getId(), cylinder.getLength(), cylinder.getDiameter());
-                    s.executeQuery(addQuery);
+                    s.executeUpdate(addQuery);
                     break;
                 case "waste":
                     float weight = Float.parseFloat(request.getParameter("weight"));
                     Waste waste = new Waste(weight);
                     addQuery = "insert into products (name, weight) " +
                             String.format("values ('%s', %f)", "Waste", waste.getWeight());
-                    s.executeQuery(addQuery);
+                    s.executeUpdate(addQuery);
                     break;
             }
         } catch (Exception e) {
