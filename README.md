@@ -5,3 +5,5 @@
 4. Iterators
 5. Function interfaces and lambdas
 6. Collection and List interfaces, Collections class
+7. Multithreading
+8. Servlet API, a bit of postgres
