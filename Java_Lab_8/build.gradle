@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.excore'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.7.1'
+}
+
+sourceCompatibility = 1.9
+targetCompatibility = 1.9
+
+dependencies {
+    compileOnly('jakarta.servlet:jakarta.servlet-api:5.0.0')
+
+    implementation('org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0')
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.2.20'
+
+
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+war {
+    archiveName("ROOT.war")
+}
